@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import { Source_Sans_3, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
+});
+
+const body = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "FDC Operations",
+  description: "Personal operations dashboard for FDC Event Technology",
+  robots: { index: false, follow: false },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body>
+        {children}
+        <div className="watermark" aria-hidden="true" />
+      </body>
+    </html>
+  );
+}
