@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 import { eventTimeLabel } from "../lib/time";
 import type { DashboardData, DraftItem, FollowUpItem, ProjectItem, TaskItem } from "../lib/types";
 
@@ -85,6 +86,7 @@ export default function Dashboard({ initial }: { initial: DashboardData }) {
       <div className="shell">
         <header className="top">
           <a className="brand" href="https://fdcav.com" aria-label="FDC Event Technology website">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/logo" alt="FDC Event Technology" />
           </a>
           <div>
@@ -102,6 +104,7 @@ export default function Dashboard({ initial }: { initial: DashboardData }) {
                 Security
               </a>
             )}
+            <ThemeToggle />
             <form action="/api/auth/logout" method="post">
               <button className="ghost" type="submit">
                 Sign out

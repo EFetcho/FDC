@@ -49,6 +49,7 @@ export default async function EnrollPage() {
         <li>Add an account and scan the code.</li>
         <li>Type the 6-digit code it shows.</li>
       </ol>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="qr" src={qr} alt="Authenticator setup code" />
       <p className="quiet">Can’t scan? Enter this key by hand:</p>
       <p className="manual">{formatSecret(secret)}</p>

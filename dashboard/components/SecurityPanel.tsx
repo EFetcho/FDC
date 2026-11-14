@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 type Start = { secret: string; qr: string };
@@ -55,6 +56,7 @@ export default function SecurityPanel() {
         </p>
         {start ? (
           <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="qr" src={start.qr} alt="New authenticator setup code" />
             <p className="manual">{start.secret}</p>
             <CodeForm
@@ -91,7 +93,7 @@ export default function SecurityPanel() {
       </section>
       {error ? <p className="error">{error}</p> : null}
       <p>
-        <a href="/">Back to the dashboard</a>
+        <Link href="/">Back to the dashboard</Link>
       </p>
     </div>
   );

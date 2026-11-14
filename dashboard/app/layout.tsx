@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import Script from "next/script";
 import { Source_Sans_3, Space_Grotesk } from "next/font/google";
+import { THEME_COOKIE, themeBootScript } from "../lib/theme";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -20,10 +23,16 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const saved = (await cookies()).get(THEME_COOKIE)?.value;
+  const theme = saved === "light" || saved === "dark" ? saved : undefined;
+
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" data-theme={theme} suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
       <body>
+        <Script id="fdc-theme" strategy="beforeInteractive">
+          {themeBootScript}
+        </Script>
         {children}
         <div className="watermark" aria-hidden="true" />
       </body>

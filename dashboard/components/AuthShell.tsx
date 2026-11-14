@@ -1,3 +1,5 @@
+import ThemeToggle from "./ThemeToggle";
+
 export default function AuthShell({
   title,
   lead,
@@ -11,13 +13,20 @@ export default function AuthShell({
 }) {
   return (
     <main className="auth-wrap">
-      <section className={`auth-card${wide ? " wide-auth" : ""}`}>
-        {/* The logo is fetched from fdcav.com by /brand/logo, with a saved copy if the site is down. */}
+      <div className={`auth-frame${wide ? " wide-auth" : ""}`}>
+        <div className="auth-bar">
+          <span>FDC Operations</span>
+          <ThemeToggle />
+        </div>
+        <section className="auth-card">
+        {/* Same-origin proxy of the fdcav.com logo, with a saved copy if the site is down. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="logo" src="/brand/logo" alt="FDC Event Technology" />
         <h1>{title}</h1>
         {lead ? <p className="lead">{lead}</p> : null}
         {children}
-      </section>
+        </section>
+      </div>
     </main>
   );
 }
